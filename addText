@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+# Call this script with at least 2 parameters, for example
+# sh scriptname <image_file> <letter_of_legend> 
+
+cat template.tex | sed "s/_image_/$1/g" | sed "s/_letter_/$2/g" | pdflatex
+
+#rename output to match <letter_of_legend>_<image_file> format
+mv texput.pdf out/$2_$1 
+
+#clean up
+rm texput.*
+
+exit 0

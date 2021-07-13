@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+import os
+
+with open("nums.txt", "r") as f: nums = f.readlines()
+
+for num in nums: os.system(f"./addText in.pdf {num.strip()}")
+
+os.system("pdfunite out/* out.pdf")
