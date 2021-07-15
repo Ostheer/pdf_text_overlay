@@ -3,6 +3,18 @@ import os
 
 with open("nums.txt", "r") as f: nums = f.readlines()
 
-for num in nums: os.system(f"./addText in.pdf {num.strip()}")
+out_folders = ["outa", "outb", "outc", "outd"]
 
-os.system("pdfunite out/* out.pdf")
+for dest in out_folders:
+	os.system(f"mkdir {dest}")
+
+NUM_PER_FOLDER = len(nums)/len(out_folders)
+
+for i, num in enumerate(nums):
+	num = num.strip()
+	num = num.split("	")[0]
+	dest = out_folders[int(i/NUM_PER_FOLDER)]
+	os.system(f"./addText in.pdf {num} {dest}")
+
+for dest in out_folders:
+	os.system(f"pdfunite {dest}/* {dest}.pdf")

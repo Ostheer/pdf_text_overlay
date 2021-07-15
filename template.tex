@@ -4,7 +4,6 @@
 \usepackage[absolute,overlay]{textpos}
 
 \begin{document}
-\includepdf[pages=1,pagecommand={\begin{tikzpicture}[remember picture, overlay]\node at (14.5,3.5) {_letter_};\end{tikzpicture}}]{_image_}
-\includepdf[pages=2-]{_image_}
+\includepdf[pages=-,pagecommand={\pagenumbering{gobble}\begin{tikzpicture}[remember picture, overlay]\node at (14.8,3.5) {_letter_};\end{tikzpicture}}]{_image_}
 \end{document}
 
