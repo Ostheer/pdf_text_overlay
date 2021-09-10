@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 import os
 
-with open("nums.txt", "r") as f: nums = f.readlines()
+id = "b"
+N = 15
 
-out_folders = ["outa", "outb", "outc", "outd"]
+with open(f"{id}.txt", "r") as f: nums = f.readlines()
+
+out_folders = [f"{id}{i}" for i in range(N)]
 
 for dest in out_folders:
 	os.system(f"mkdir {dest}")
@@ -14,7 +17,10 @@ for i, num in enumerate(nums):
 	num = num.strip()
 	num = num.split("	")[0]
 	dest = out_folders[int(i/NUM_PER_FOLDER)]
-	os.system(f"./addText in.pdf {num} {dest}")
+	os.system(f"./addText {id}.pdf {num} {dest}")
 
 for dest in out_folders:
 	os.system(f"pdfunite {dest}/* {dest}.pdf")
+
+os.system(f'7z a {id + ".7z"} {" ".join([of+".pdf" for of in out_folders])}')
+
